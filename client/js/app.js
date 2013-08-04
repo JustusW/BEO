@@ -27,10 +27,10 @@
 function showMessages(error) {
     console.log(error);
 }
-
 util.print_debug = showMessages;
-
 util.print_error = showMessages;
+util.print_info = showMessages;
+util.print_warning = showMessages;
 
 // Declare app level module which depends on filters, and services
 var BEO = angular.module('BEO', ['BEO.filter', 'BEO.service', 'BEO.directive', 'BEO.controller'])

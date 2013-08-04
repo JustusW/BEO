@@ -30,12 +30,13 @@ angular.module('BEO.controller', [])
     .controller('KeyManagerCtrl', [function() {
 
     }])
-    .controller('KeyManagerNewCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+    .controller('KeyManagerNewCtrl', ['$scope', '$timeout', 'KeyManager', function($scope, $timeout, KeyManager) {
         $scope.key = {};
         $scope.generate = function () {
             $('#block').show();
             $timeout(function () {
                 $scope.key = openpgp.generate_key_pair(1, 2048, $scope.userid, $scope.password);
+                KeyManager.addKey($scope.key);
                 $('#block').hide();
             },100);
         };

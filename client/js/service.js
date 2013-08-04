@@ -27,4 +27,14 @@
 /* Services */
 
 angular.module('BEO.service', []).
-    value('version', '0.1');
+    value('version', '0.1')
+    .factory('KeyManager', function ($http) {
+        var keyStore = [];
+        return {
+            addKey: function(key) {
+                keyStore.push(key);
+                console.log(keyStore);
+            }
+        };
+    });
+

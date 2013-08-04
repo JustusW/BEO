@@ -25,7 +25,7 @@
 'use strict';
 
 /* Controllers */
-
+var tmp;
 angular.module('BEO.controller', [])
     .controller('KeyManagerCtrl', [function() {
 
@@ -35,8 +35,10 @@ angular.module('BEO.controller', [])
         $scope.generate = function () {
             $('#block').show();
             $timeout(function () {
-                $scope.key = openpgp.generate_key_pair(1, 2048, $scope.userid, $scope.password);
-                KeyManager.addKey($scope.key);
+                $scope.key = openpgp.generate_key_pair(1, 512, $scope.userid, $scope.password);
+                tmp = $scope.key;
+                openpgp.keyring.importPrivateKey($scope.key.privateKeyArmored, $scope.password);
+                openpgp.keyring.importPublicKey($scope.key.publicKeyArmored);
                 $('#block').hide();
             },100);
         };

@@ -33,7 +33,6 @@ angular.module('BEO.service', []).
         return {
             addKey: function(key) {
                 keyStore.push(key);
-                console.log(keyStore);
             }
         };
     });

@@ -1,0 +1,12 @@
+#block {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(0,0,0,0.3);
+    background-image: url('../img/ajax-loader.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+}

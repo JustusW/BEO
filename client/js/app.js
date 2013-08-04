@@ -12,4 +12,5 @@ var BEO = angular.module('BEO', ['BEO.filter', 'BEO.service', 'BEO.directive', '
     }])
     .run(function () {
         openpgp.init();
+        $('#block').hide();
     });

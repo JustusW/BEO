@@ -1,7 +1,8 @@
 <h3>Key Manager: New Key</h3>
 <a href="#/keymanager">Back</a><br>
-<form ng-submit="generate()">
+<form ng-show="key.privateKeyArmored == undefined" ng-submit="generate()">
     <input type="text" ng-model="userid" placeholder="UserID">
     <input type="password" ng-model="password" placeholder="Password">
     <input type="submit" value="Generate">
 </form>
+<h4 ng-show="key.privateKeyArmored != undefined">Key generated!</h4>

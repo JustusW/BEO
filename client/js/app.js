@@ -9,4 +9,7 @@ var BEO = angular.module('BEO', ['BEO.filter', 'BEO.service', 'BEO.directive', '
             .when('/keymanager', {templateUrl: 'partials/keyManager.html', controller: 'KeyManagerCtrl'})
             .when('/keymanager/new', {templateUrl: 'partials/keyManagerNew.html', controller: 'KeyManagerNewCtrl'})
             .otherwise({templateUrl: 'partials/home.html'});
-    }]);
+    }])
+    .run(function () {
+        openpgp.init();
+    });

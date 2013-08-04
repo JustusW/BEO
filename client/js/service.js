@@ -33,6 +33,17 @@ angular.module('BEO.service', []).
         return {
             addKey: function(key) {
                 keyStore.push(key);
+            },
+            signMessage: function(message) {
+                if ( openpgp.keyring.hasPrivateKey() !== true ) {
+                    return;
+                }
+
+                return openpgp.write_signed_message(openpgp.keyring.privateKeys[0], message);
+            },
+            encryptMessage: function(message,key) {
+
+                return '';
             }
         };
     });

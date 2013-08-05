@@ -27,6 +27,18 @@
 /* Controllers */
 var tmp;
 angular.module('BEO.controller', [])
+    .controller('VoteListCtrl', ['$scope', 'Backend', function($scope, Backend) {
+        // TODO: Check if user has a private key set.
+        $scope.data = {
+            voteList: []
+        };
+
+        $scope.data.voteList = Backend.getOpenVoteList();
+
+        $scope.submit = function (data) {
+            console.log(data);
+        }
+    }])
     .controller('KeyManagerCtrl', [function() {
 
     }])

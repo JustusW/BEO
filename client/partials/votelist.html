@@ -1,0 +1,25 @@
+<h3>Voting Center</h3>
+<ul>
+    <li ng-repeat="vote in data.voteList">
+        <div style="cursor: pointer;" ng-click="toggle = !toggle">{{vote.name}} ending {{vote.end}}</div>
+        <form ng-show="toggle" ng-submit="submit(vote)">
+            <table class="vote" border="1">
+                <tr>
+                    <td>Name</td>
+                    <td>Yes</td>
+                    <td>Maybe</td>
+                    <td>No</td>
+                </tr>
+                <tr ng-repeat="petition in vote.petitionList">
+                    <td>{{petition.name}}</td>
+                    <td><input name="{{petition.name}}" type="radio" ng-model="petition.vote" value="yes"></td>
+                    <td><input name="{{petition.name}}" type="radio" ng-model="petition.vote" value="maybe"></td>
+                    <td><input name="{{petition.name}}" type="radio" ng-model="petition.vote" value="no"></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><input type="submit" value="Vote"></td>
+                </tr>
+            </table>
+        </form>
+    </li>
+</ul>

@@ -10,3 +10,29 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+ul li {
+    list-style: none;
+}
+
+ul li form {
+    /*border: 1px dashed black;*/
+}
+
+.petitionName {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+table.vote tr td {
+    width: 50px;
+    text-align: center;
+}
+
+table.vote tr td input[type="radio"] {
+    margin: -2px 0 0;
+}
+
+table.vote tr td:first-child {
+    width: 250px;
+}

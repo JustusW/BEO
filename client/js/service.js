@@ -28,7 +28,40 @@
 
 angular.module('BEO.service', []).
     value('version', '0.1')
-    .factory('KeyManager', function ($http) {
+    .factory('Backend', function () {
+        return {
+            getOpenVoteList: function () {
+                return [
+                    {
+                        name:'Vote 1',
+                        end:'06.08.2013 00:00',
+                        petitionList: [
+                            {name:'Petition 1'},
+                            {name:'Petition 2'},
+                            {name:'Petition 3'},
+                            {name:'Petition 4'}
+                        ]
+                    },
+                    {
+                        name:'Vote 2',
+                        end:'08.08.2013 00:00',
+                        petitionList: [
+                            {name:'Petition 5'},
+                            {name:'Petition 6'}
+                        ]
+                    },
+                    {
+                        name:'Vote 3',
+                        end:'07.08.2013 00:00',
+                        petitionList: [
+                            {name:'Petition 7'}
+                        ]
+                    }
+                ];
+            }
+        };
+    })
+    .factory('KeyManager', function () {
         var keyStore = [];
         return {
             addKey: function(key) {

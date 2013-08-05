@@ -36,6 +36,7 @@ util.print_warning = showMessages;
 var BEO = angular.module('BEO', ['BEO.filter', 'BEO.service', 'BEO.directive', 'BEO.controller'])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
+            .when('/vote', {templateUrl: 'partials/votelist.html', controller: 'VoteListCtrl'})
             .when('/keymanager', {templateUrl: 'partials/keyManager.html', controller: 'KeyManagerCtrl'})
             .when('/keymanager/new', {templateUrl: 'partials/keyManagerNew.html', controller: 'KeyManagerNewCtrl'})
             .otherwise({templateUrl: 'partials/home.html'});

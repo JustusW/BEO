@@ -7,8 +7,10 @@ This project is still in its starting phase.
 ==== Idea ====
 This software is based on a pseudonmyous i-voting concept based on PGP.
 
+Preliminary concept:
+
 Membership Authority
 Clearing Authority
 Voting Server
 
-Bewertungswahl mit Enthaltung
+work in progress!

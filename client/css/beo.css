@@ -36,3 +36,7 @@ table.vote tr td input[type="radio"] {
 table.vote tr td:first-child {
     width: 250px;
 }
+
+table.settings input {
+    width: 500px;
+}

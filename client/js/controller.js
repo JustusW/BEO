@@ -27,7 +27,7 @@
 /* Controllers */
 var tmp;
 angular.module('BEO.controller', [])
-    .controller('VoteListCtrl', ['$scope', 'Backend', function($scope, Backend) {
+    .controller('VoteListCtrl', ['$scope', 'Backend', 'KeyManager', function($scope, Backend, KeyManager) {
         // TODO: Check if user has a private key set.
         $scope.data = {
             voteList: []
@@ -36,20 +36,29 @@ angular.module('BEO.controller', [])
         $scope.data.voteList = Backend.getOpenVoteList();
 
         $scope.submit = function (data) {
-            console.log(data);
+            console.log(KeyManager.signMessage(angular.toJson(data)));
         }
     }])
     .controller('KeyManagerCtrl', [function() {
 
     }])
+    .controller('KeyManagerSettingsCtrl', ['$scope', 'Backend', 'KeyManager', function($scope, Backend, KeyManager) {
+        $scope.data = {
+            settings: Backend.getSettings()
+        };
+    }])
     .controller('KeyManagerNewCtrl', ['$scope', '$timeout', 'KeyManager', function($scope, $timeout, KeyManager) {
         $scope.key = {};
+        $scope.userid = 'Justus';
+        $scope.password = 'test';
+
         $scope.generate = function () {
             $('#block').show();
             $timeout(function () {
+                // TODO: Raise key size to 2048+.
                 $scope.key = openpgp.generate_key_pair(1, 512, $scope.userid, $scope.password);
                 tmp = $scope.key;
-                openpgp.keyring.importPrivateKey($scope.key.privateKeyArmored, $scope.password);
+                KeyManager.registerPersonalKey($scope.key);
                 openpgp.keyring.importPublicKey($scope.key.publicKeyArmored);
                 $('#block').hide();
             },100);

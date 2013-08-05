@@ -1,7 +1,7 @@
 <h3>Voting Center</h3>
 <ul>
     <li ng-repeat="vote in data.voteList">
-        <div style="cursor: pointer;" ng-click="toggle = !toggle">{{vote.name}} ending {{vote.end}}</div>
+        <div style="cursor: pointer;" ng-click="toggle = !toggle">{{!toggle && '+' || '-'}} {{vote.name}} ending {{vote.end}}</div>
         <form ng-show="toggle" ng-submit="submit(vote)">
             <table class="vote" border="1">
                 <tr>

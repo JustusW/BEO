@@ -29,7 +29,14 @@
 angular.module('BEO.service', []).
     value('version', '0.1')
     .factory('Backend', function () {
+        var settings = {
+            clearingAuthorityAPI: 'http://localhost/BEO/CAServer/api.php',
+            votingAuthorityAPI: 'http://localhost/BEO/VAServer/api.php'
+        };
         return {
+            getSettings: function () {
+                return settings;
+            },
             getOpenVoteList: function () {
                 return [
                     {
@@ -62,17 +69,16 @@ angular.module('BEO.service', []).
         };
     })
     .factory('KeyManager', function () {
-        var keyStore = [];
+        var data = {};
         return {
-            addKey: function(key) {
-                keyStore.push(key);
+            registerPersonalKey: function(key) {
+                data.personalKey = key;
             },
             signMessage: function(message) {
-                if ( openpgp.keyring.hasPrivateKey() !== true ) {
-                    return;
+                if ( data.personalKey == undefined ) {
+                    return false;
                 }
-
-                return openpgp.write_signed_message(openpgp.keyring.privateKeys[0], message);
+                return openpgp.write_signed_message(data.personalKey.privateKey, message);
             },
             encryptMessage: function(message,key) {
 

@@ -39,6 +39,7 @@ var BEO = angular.module('BEO', ['BEO.filter', 'BEO.service', 'BEO.directive', '
             .when('/vote', {templateUrl: 'partials/votelist.html', controller: 'VoteListCtrl'})
             .when('/keymanager', {templateUrl: 'partials/keyManager.html', controller: 'KeyManagerCtrl'})
             .when('/keymanager/new', {templateUrl: 'partials/keyManagerNew.html', controller: 'KeyManagerNewCtrl'})
+            .when('/keymanager/settings', {templateUrl: 'partials/keyManagerSettings.html', controller: 'KeyManagerSettingsCtrl'})
             .otherwise({templateUrl: 'partials/home.html'});
     }])
     .run(function () {

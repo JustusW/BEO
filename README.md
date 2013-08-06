@@ -21,9 +21,7 @@ Voting
 		Provide Valid Public Keys
 		Provide VoteServer Public Key
 	VoteServer
-		Provide Voting Public Key
-		Provide Voting Private Key after vote is done
-		Provide List of Petitions
+		Provide signed List of Petitions
 	Client
 
 

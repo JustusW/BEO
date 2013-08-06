@@ -26,9 +26,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 if ( !isset($_GET['cmd']) ) {
     die;
 }
-if ( !isset($_GET['target']) ) {
-    die;
-}
 
 $keyList = array(
     'AuthServer' => array(
@@ -307,7 +304,24 @@ NslJJ+3HniezT1CfdgGGz94QVe7zmCnPnTw=
 );
 
 $messageList = array(
-    'voteList' => '',
+    'voteList' => '-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+[{"name":"Vote 1","end":"10.09.2013 00:00","petitionList":[{"name":"Petition 1"},{"name":"Petition 2"},{"name":"Petition 3"}]}]
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v.1.20130712
+Comment: http://openpgpjs.org
+
+wsBcBAEBCAAQBQJSAQH9CRByTNxMmzvAAwAAPHMH/iA/4zRj4dQ0nAGCTVtI
+wlR4t3J+IYPBl+4Jk+c9adL/6ARWverjQuDryMonqrAs2Y3jqQWbucORmuho
+GwfsWXlYMI2TfSoZg4LYeK63qn9HW4UgEgbY+a3N7knFBxnNBNUy2XWvRkE3
+aNR2GrsxUB8b2uGvD87NuciLe5zxba7vYzzLlxDTvrbk3VB8p4mc2/rpYJ1Y
+5/ZbTLQmSuRD0KwLkaH0AG71vcPobUCEaf3aa6VpST/jXu/GZoNXBLvyz5u8
+/PHDihEPu19jfvICsyHIdMQz88q166hcl56qEvmjuf1KgYh+Exe+wC/K1HuS
+6mXxAugIXPbNiyW9O7ktBVQ=
+=H633
+-----END PGP SIGNATURE-----
+',
 );
 
 switch($_GET['cmd']) {

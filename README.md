@@ -20,15 +20,18 @@ This method is not receipt free, but every voter can check against the clearing 
 
 Possible Adaptions
 ====
-The proposed scheme allows for revoting, but since it isn't anonymous it is not proven against vote buying or distortion.
+1. The proposed scheme allows for revoting, but since it isn't anonymous it is not proven against vote buying or distortion.
 It is possible to include a mechanism for revoking a vote without making public which vote has been revoked.
 If a method for changing a key pair is provided as well this would allow for anonymous revoting against an attacker not having access to the voteserver.
 
-It should be noted that right now the Karlsruher Institute of Technology (KIT) is working on a method to allow anonymous revoting.
+2. It should be noted that right now the Karlsruher Institute of Technology (KIT) is working on a method to allow anonymous revoting.
 If this scheme is compatible with the basic idea of PGP based voting this would provide a good venue for improving the resilience against external and internal threats.
 
-It has been proposed to allow for external signing using PGP Crypto Keys.
+3. It has been proposed to allow for external signing using PGP Crypto Keys.
 This allows for safe hardware without the risk of exposing ones private key to trojans or other local risks.
+This method can be combined with additional hardware like an LCD to allow a trusted third party confirmation.
+
+4. SMS or other second channels could be used for transmission of the deniable receipt see 1&2.
 
 Processes
 ====

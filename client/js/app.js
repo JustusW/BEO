@@ -25,7 +25,7 @@
 'use strict';
 
 function showMessages(error) {
-    console.log(error);
+    //console.log(error);
 }
 util.print_debug = showMessages;
 util.print_error = showMessages;
@@ -42,8 +42,11 @@ var BEO = angular.module('BEO', ['BEO.filter', 'BEO.service', 'BEO.directive', '
             .when('/keymanager/settings', {templateUrl: 'partials/keyManagerSettings.html', controller: 'KeyManagerSettingsCtrl'})
             .otherwise({templateUrl: 'partials/home.html'});
     }])
-    .run(function () {
+    .run(function (Backend) {
         openpgp.init();
         openpgp.keyring.init();
         $('#block').hide();
+
+        Backend.getVAKey();
+        Backend.getCAKey();
     });

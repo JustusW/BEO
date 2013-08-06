@@ -308,10 +308,10 @@ NslJJ+3HniezT1CfdgGGz94QVe7zmCnPnTw=
 
 
 switch($_GET['cmd']) {
-    case 'showPrivateKey':
+    case 'getPrivateKey':
         echo $keyList[$_GET['target']]['private'];
     break;
-    case 'showPublicKey':
+    case 'getPublicKey':
         echo $keyList[$_GET['target']]['public'];
     break;
 }

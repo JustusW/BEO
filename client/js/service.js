@@ -26,8 +26,22 @@
 
 /* Services */
 
-angular.module('BEO.service', []).
-    value('version', '0.1')
+angular.module('BEO.service', [])
+    .factory('decodingInterceptor', function($q) {
+        return function(promise) {
+            return promise.then(function(data) {
+                if ( !/-----BEGIN PGP SIGNED MESSAGE-----/.test(data.data) ) {
+                    return data;
+                }
+                var msg = openpgp.read_message(data.data)[0];
+                //todo: verify message
+                return JSON.parse(msg.text);
+            });
+        }
+    })
+    .config(function($httpProvider) {
+        $httpProvider.responseInterceptors.push('decodingInterceptor');
+    })
     .factory('Backend', function ($http) {
         var settings = {
             clearingAuthorityAPI: 'http://localhost/BEO/CAServer/api.php',
@@ -38,11 +52,20 @@ angular.module('BEO.service', []).
                 return settings;
             },
             getOpenVoteList: function () {
-                return $http.get(settings.votingAuthorityAPI + '?cmd=getVoteList');
+                return $http.get(settings.votingAuthorityAPI + '?cmd=getVoteList')
+                    .success(function (data) {
+                        console.log(data);
+                    });
+            },
+            getCAKey: function() {
+                return $http.get(settings.clearingAuthorityAPI + '?cmd=getPublicKey&target=CAServer');
+            },
+            getVAKey: function() {
+                return $http.get(settings.clearingAuthorityAPI + '?cmd=getPublicKey&target=VAServer');
             }
         };
     })
-    .factory('KeyManager', function () {
+    .factory('KeyManager', function (Backend) {
         var data = {};
         return {
             registerPersonalKey: function(key) {

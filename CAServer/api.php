@@ -31,7 +31,7 @@ if ( !isset($_GET['target']) ) {
 }
 
 $keyList = array(
-    'AuthServer' => array(
+    'CAServer' => array(
         'private' => '-----BEGIN PGP PRIVATE KEY BLOCK-----
 Version: OpenPGP.js v.1.20130420
 Comment: http://openpgpjs.org
@@ -86,7 +86,7 @@ UqWwThccnz+Bnrxza5dnc53eoBDQjsiUjqSKJhU3ZA==
 =6CsK
 -----END PGP PUBLIC KEY BLOCK-----',
     ),
-    'VoteServer' => array(
+    'VAServer' => array(
         'private' => '-----BEGIN PGP PRIVATE KEY BLOCK-----
 Version: OpenPGP.js v.1.20130420
 Comment: http://openpgpjs.org

@@ -306,13 +306,13 @@ NslJJ+3HniezT1CfdgGGz94QVe7zmCnPnTw=
     ),
 );
 
+$messageList = array(
+    'voteList' => '',
+);
 
 switch($_GET['cmd']) {
-    case 'showPrivateKey':
-        echo $keyList[$_GET['target']]['private'];
-    break;
-    case 'showPublicKey':
-        echo $keyList[$_GET['target']]['public'];
+    case 'getVoteList':
+        echo $messageList['voteList'];
     break;
 }
 

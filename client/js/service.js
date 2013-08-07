@@ -79,8 +79,36 @@ angular.module('BEO.service', [])
         };
     })
     .factory('KeyManager', function () {
-        var data = {};
+        var data = {
+            personalKey: {}
+        };
         return {
+            extrudePersonalKey: function (){
+                if ( data.personalKey.privateKeyArmored == undefined )
+                    return;
+
+                var key;
+
+                if ( data.personalKey.privateKeyArmoredPassword != undefined && data.personalKey.privateKeyArmoredPassword != '' ) {
+                    key = openpgp.read_privateKey(
+                        data.personalKey.privateKeyArmored,
+                        data.personalKey.privateKeyArmoredPassword
+                    )[0]
+                } else {
+                    key = openpgp.read_privateKey(
+                        data.personalKey.privateKeyArmored
+                    )[0]
+                }
+
+                key.privateKeyArmored = data.personalKey.privateKeyArmored;
+                key.privateKeyArmoredPassword = data.personalKey.privateKeyArmoredPassword;
+
+                if (key.privateKeyPacket.secMPIs) {
+                    // todo: Missing Password!
+                }
+
+                angular.copy(key, data.personalKey);
+            },
             registerVAKey: function(key) {
                 data.VAKey = key;
             },
@@ -88,7 +116,19 @@ angular.module('BEO.service', [])
                 data.CAKey = key;
             },
             registerPersonalKey: function(key) {
-                data.personalKey = key;
+                if ( key.privateKey != undefined ) {
+                    key.privateKey.privateKeyArmored = key.privateKeyArmored;
+                    key = key.privateKey;
+                }
+                angular.copy(key,data.personalKey);
+            },
+            getPersonalKey: function(key) {
+                return data.personalKey;
+            },
+            hasPersonalKey: function() {
+                return data.personalKey != null
+                    && data.personalKey.privateKeyPacket != null
+                    && data.personalKey.privateKeyPacket.secMPIs != null;
             },
             signMessage: function(message) {
                 if ( data.personalKey == undefined ) {

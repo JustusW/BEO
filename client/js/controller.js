@@ -42,12 +42,19 @@ angular.module('BEO.controller', [])
     .controller('KeyManagerCtrl', [function() {
 
     }])
+    .controller('KeyManagerLoadCtrl', ['$scope', 'KeyManager', function($scope, KeyManager) {
+        $scope.key = KeyManager.getPersonalKey();
+
+        $scope.submit = function(){
+            KeyManager.extrudePersonalKey();
+        };
+    }])
     .controller('KeyManagerSettingsCtrl', ['$scope', 'Backend', 'KeyManager', function($scope, Backend, KeyManager) {
         $scope.data = {
             settings: Backend.getSettings()
         };
     }])
-    .controller('KeyManagerNewCtrl', ['$scope', '$timeout', 'KeyManager', function($scope, $timeout, KeyManager) {
+    .controller('KeyManagerNewCtrl', ['$scope', '$timeout', '$location', 'KeyManager', function($scope, $timeout, $location, KeyManager) {
         $scope.key = {};
         $scope.userid = 'Justus';
         $scope.password = 'test';
@@ -61,6 +68,7 @@ angular.module('BEO.controller', [])
                 KeyManager.registerPersonalKey($scope.key);
                 openpgp.keyring.importPublicKey($scope.key.publicKeyArmored);
                 $('#block').hide();
+                $location.path('/keymanager/load');
             },100);
         };
 

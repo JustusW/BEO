@@ -17,6 +17,9 @@
     <script type="text/javascript" src="js/service.js"></script>
 </head>
 <body ng-app="BEO">
+    <div class="alert alert-error" ng-controller="KeyManagerLoadCtrl" ng-show="!key.privateKeyPacket.secMPIs">
+        No personal key defined! Load or create one in the key manager!
+    </div>
     <div>
         <ul>
             <li><a href="#/">Home</a></li>

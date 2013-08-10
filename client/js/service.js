@@ -117,6 +117,7 @@ angular.module('BEO.service', [])
             },
             registerPersonalKey: function(key) {
                 if ( key.privateKey != undefined ) {
+                    key.privateKey.privateKeyArmoredPassword = key.privateKeyArmoredPassword;
                     key.privateKey.privateKeyArmored = key.privateKeyArmored;
                     key = key.privateKey;
                 }
@@ -134,7 +135,10 @@ angular.module('BEO.service', [])
                 if ( data.personalKey == undefined ) {
                     return false;
                 }
-                return openpgp.write_signed_message(data.personalKey.privateKey, message);
+                var key = data.personalKey;
+                if ( data.personalKey.privateKey != undefined )
+                    key = data.personalKey.privateKey;
+                return openpgp.write_signed_message(key, message);
             },
             encryptMessage: function(message,key) {
 

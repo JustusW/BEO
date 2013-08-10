@@ -65,6 +65,7 @@ angular.module('BEO.controller', [])
                 // TODO: Raise key size to 2048+.
                 $scope.key = openpgp.generate_key_pair(1, 512, $scope.userid, $scope.password);
                 tmp = $scope.key;
+                tmp.privateKeyArmoredPassword = $scope.password;
                 KeyManager.registerPersonalKey($scope.key);
                 openpgp.keyring.importPublicKey($scope.key.publicKeyArmored);
                 $('#block').hide();
